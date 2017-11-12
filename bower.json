@@ -1,0 +1,15 @@
+{
+  "name": "prettier-printer",
+  "description": "A pretty printing library",
+  "main": "dist/prettier-printer.js",
+  "license": "MIT",
+  "keywords": [
+    "pretty-printer",
+    "text"
+  ],
+  "homepage": "https://github.com/polytypic/prettier-printer",
+  "dependencies": {
+    "infestines": "^0.4.5"
+  },
+  "ignore": ["*", "!*.md", "!dist/*"]
+}

@@ -1,0 +1,74 @@
+{
+  "name": "prettier-printer",
+  "version": "0.1.0",
+  "description": "A pretty printing library",
+  "module": "dist/prettier-printer.es.js",
+  "main": "dist/prettier-printer.cjs.js",
+  "scripts": {
+    "dist": "npm run dist:umd & npm run dist:umd.min & npm run dist:es & npm run dist:cjs & wait",
+    "dist:cjs": "    NODE_ENV=           rollup -c -n PP -i src/prettier-printer.js -f cjs -o dist/prettier-printer.cjs.js",
+    "dist:es": "     NODE_ENV=           rollup -c -n PP -i src/prettier-printer.js -f es  -o dist/prettier-printer.es.js",
+    "dist:umd": "    NODE_ENV=dev        rollup -c -n PP -i src/prettier-printer.js -f umd -o dist/prettier-printer.js",
+    "dist:umd.min": "NODE_ENV=production rollup -c -n PP -i src/prettier-printer.js -f umd -o dist/prettier-printer.min.js",
+    "lint": "eslint src test",
+    "prepare": "npm run lint & (npm run dist && npm run test) & wait",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "test": "nyc mocha",
+    "watch": "npm run watch:dist & npm run watch:test & wait",
+    "watch:dist": "watch-run -d 500 -i -p 'src/*.js' npm run dist",
+    "watch:test": "watch-run -d 500    -p 'dist/prettier-printer.cjs.js,test/*.js' npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polytypic/prettier-printer.git"
+  },
+  "keywords": [
+    "pretty-printer",
+    "text"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/polytypic/prettier-printer/issues"
+  },
+  "homepage": "https://github.com/polytypic/prettier-printer#readme",
+  "dependencies": {
+    "infestines": "^0.4.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-plugin-check-es2015-constants": "^6.22.0",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+    "babel-plugin-transform-es2015-block-scoped-functions": "^6.22.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.26.0",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-plugin-transform-es2015-computed-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-es2015-duplicate-keys": "^6.24.1",
+    "babel-plugin-transform-es2015-for-of": "^6.23.0",
+    "babel-plugin-transform-es2015-function-name": "^6.24.1",
+    "babel-plugin-transform-es2015-literals": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-es2015-object-super": "^6.24.1",
+    "babel-plugin-transform-es2015-parameters": "^6.24.1",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-es2015-sticky-regex": "^6.24.1",
+    "babel-plugin-transform-es2015-template-literals": "^6.22.0",
+    "babel-plugin-transform-es2015-unicode-regex": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "codecov": "^3.0.0",
+    "eslint": "^4.11.0",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "rollup": "^0.51.5",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "uglify-js": "^3.1.9",
+    "watch-run": "^1.2.5"
+  }
+}
