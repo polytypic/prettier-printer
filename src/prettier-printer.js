@@ -52,7 +52,7 @@ function flatten(doc) {
     case 5:
       return doc.w
     default:
-      return With((column, prefix) => flatten(doc.f(column, prefix)))
+      return With(I.pipe2U(doc.f, flatten))
   }
 }
 
