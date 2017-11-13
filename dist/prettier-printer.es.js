@@ -1,4 +1,4 @@
-import { curry, freeze, isArray, isString } from 'infestines';
+import { curry, freeze, isArray, isString, pipe2U } from 'infestines';
 
 var padding = function padding(n) {
   return isString(n) ? n : ' '.repeat(n);
@@ -70,9 +70,7 @@ function flatten(doc) {
     case 5:
       return doc.w;
     default:
-      return With(function (column, prefix) {
-        return flatten(doc.f(column, prefix));
-      });
+      return With(pipe2U(doc.f, flatten));
   }
 }
 
