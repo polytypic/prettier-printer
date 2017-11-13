@@ -1,6 +1,6 @@
 {
   "name": "prettier-printer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A pretty printing library",
   "module": "dist/prettier-printer.es.js",
   "main": "dist/prettier-printer.cjs.js",

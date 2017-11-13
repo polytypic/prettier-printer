@@ -35,63 +35,63 @@ maximum width.</p>
 <li><a href="#tutorial">Tutorial</a></li>
 <li><a href="#reference">Reference</a><ul>
 <li><a href="#rendering-documents">Rendering documents</a><ul>
-<li><a href="#PP-render"><code>PP.render(maxCols, doc) ~&gt; string</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-renderWith"><code>PP.renderWith({text: (state, string) =&gt; state, line: state =&gt; state}, state, maxCols, doc) ~&gt; state</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-render"><code>PP.render(maxCols, doc) ~&gt; string</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-renderWith"><code>PP.renderWith({text: (state, string) =&gt; state, line: state =&gt; state}, state, maxCols, doc) ~&gt; state</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#document-constants">Document constants</a><ul>
-<li><a href="#PP-line"><code>PP.line ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-lineBreak"><code>PP.lineBreak ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-softLine"><code>PP.softLine ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-softBreak"><code>PP.softBreak ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-line"><code>PP.line ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-lineBreak"><code>PP.lineBreak ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-softLine"><code>PP.softLine ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-softBreak"><code>PP.softBreak ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#concatenating-documents">Concatenating documents</a><ul>
-<li><a href="#PP-append"><code>PP.append(rhsDoc, lhsDoc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-prepend"><code>PP.prepend(lhsDoc, rhsDoc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-append"><code>PP.append(rhsDoc, lhsDoc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-prepend"><code>PP.prepend(lhsDoc, rhsDoc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#lists-of-documents">Lists of documents</a><ul>
-<li><a href="#PP-intersperse"><code>PP.intersperse(doc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-punctuate"><code>PP.punctuate(sepDoc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-intersperse"><code>PP.intersperse(doc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-punctuate"><code>PP.punctuate(sepDoc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#lazy-documents">Lazy documents</a><ul>
-<li><a href="#PP-lazy"><code>PP.lazy(() =&gt; doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-lazy"><code>PP.lazy(() =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#enclosing-documents">Enclosing documents</a><ul>
-<li><a href="#PP-enclose"><code>PP.enclose([lhsDoc, rhsDoc], doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-enclose"><code>PP.enclose([lhsDoc, rhsDoc], doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 <li><a href="#document-pair-constants">Document pair constants</a><ul>
-<li><a href="#PP-angles"><code>PP.angles ~&gt; [&#39;&lt;&#39;, &#39;&gt;&#39;]</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-braces"><code>PP.braces ~&gt; [&#39;{&#39;, &#39;}&#39;]</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-brackets"><code>PP.brackets ~&gt; [&#39;[&#39;, &#39;]&#39;]</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-dquotes"><code>PP.dquotes ~&gt; [&#39;&quot;&#39;, &#39;&quot;&#39;]</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-parens"><code>PP.parens ~&gt; [&#39;(&#39;, &#39;)&#39;]</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-spaces"><code>PP.spaces ~&gt; [&#39; &#39;, &#39; &#39;]</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-squotes"><code>PP.squotes ~&gt; [&quot;&#39;&quot;, &quot;&#39;&quot;]</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-angles"><code>PP.angles ~&gt; [&#39;&lt;&#39;, &#39;&gt;&#39;]</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-braces"><code>PP.braces ~&gt; [&#39;{&#39;, &#39;}&#39;]</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-brackets"><code>PP.brackets ~&gt; [&#39;[&#39;, &#39;]&#39;]</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-dquotes"><code>PP.dquotes ~&gt; [&#39;&quot;&#39;, &#39;&quot;&#39;]</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-parens"><code>PP.parens ~&gt; [&#39;(&#39;, &#39;)&#39;]</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-spaces"><code>PP.spaces ~&gt; [&#39; &#39;, &#39; &#39;]</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-squotes"><code>PP.squotes ~&gt; [&quot;&#39;&quot;, &quot;&#39;&quot;]</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#alternative-documents">Alternative documents</a><ul>
-<li><a href="#PP-choice"><code>PP.choice(wideDoc, narrowDoc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-group"><code>PP.group(doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-choice"><code>PP.choice(wideDoc, narrowDoc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-group"><code>PP.group(doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#nested-documents">Nested documents</a><ul>
-<li><a href="#PP-nest"><code>PP.nest(string | number, doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-nest"><code>PP.nest(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#layout-dependent-documents">Layout dependent documents</a><ul>
-<li><a href="#PP-column"><code>PP.column(column =&gt; doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-nesting"><code>PP.nesting(nesting =&gt; doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-column"><code>PP.column(column =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-nesting"><code>PP.nesting(nesting =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 <li><a href="#aligned-documents">Aligned documents</a><ul>
-<li><a href="#PP-align"><code>PP.align(doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-hang"><code>PP.hang(string | number, doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
-<li><a href="#PP-indent"><code>PP.indent(string | number, doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></li>
+<li><a href="#PP-align"><code>PP.align(doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-hang"><code>PP.hang(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
+<li><a href="#PP-indent"><code>PP.indent(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></li>
 </ul>
 </li>
 </ul>
@@ -109,7 +109,7 @@ printer</a>.</p>
 <p>The examples also utilize <a href="http://ramdajs.com/">Ramda</a>, bound as <code>R</code>, and
 <a href="https://github.com/polytypic/infestines">Infestines</a>, bound as <code>I</code>.</p>
 <h3><a id="rendering-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#rendering-documents">■</a> <a href="#rendering-documents">Rendering documents</a></h3>
-<h4><a id="PP-render"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-render">■</a> <a href="#PP-render"><code>PP.render(maxCols, doc) ~&gt; string</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-render"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-render">■</a> <a href="#PP-render"><code>PP.render(maxCols, doc) ~&gt; string</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.render</code> renders the document to a string trying to keep the width of the
 document within the specified maximum.  A width of <code>0</code> means that there is no
 maximum.  See also <a href="#PP-renderWith"><code>PP.renderWith</code></a>.</p>
@@ -120,14 +120,14 @@ maximum.  See also <a href="#PP-renderWith"><code>PP.renderWith</code></a>.</p>
       PP.indent(&#39;-- &#39;),
       PP.render(10))
 </code></pre>
-<h4><a id="PP-renderWith"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-renderWith">■</a> <a href="#PP-renderWith"><code>PP.renderWith({text: (state, string) =&gt; state, line: state =&gt; state}, state, maxCols, doc) ~&gt; state</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-renderWith"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-renderWith">■</a> <a href="#PP-renderWith"><code>PP.renderWith({text: (state, string) =&gt; state, line: state =&gt; state}, state, maxCols, doc) ~&gt; state</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.renderWith</code> renders the document with the given actions <code>text</code> and <code>line</code>.
 You can use this function to output the document without creating a string of
 the document.  See also <a href="#PP-render"><code>PP.render</code></a>.</p>
 <h3><a id="document-constants"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#document-constants">■</a> <a href="#document-constants">Document constants</a></h3>
 <p>Any string that doesn&#39;t contain <code>&#39;\n&#39;</code> or <code>&#39;\r&#39;</code> characters is considered as an
 atomic document.  For example, <code>&#39;&#39;</code> is an empty document and <code>&#39; &#39;</code> is a space.</p>
-<h4><a id="PP-line"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-line">■</a> <a href="#PP-line"><code>PP.line ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-line"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-line">■</a> <a href="#PP-line"><code>PP.line ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.line</code> renders as a new line unless undone by <a href="#PP-group"><code>PP.group</code></a> in
 which case <code>PP.line</code> renders as a space.</p>
 <p>For example:</p>
@@ -135,7 +135,7 @@ which case <code>PP.line</code> renders as a space.</p>
 </code></pre>
 <pre><code class="hljs lang-js">PP.render(20, PP.group([&#39;Hello,&#39;, PP.line, &#39;world!&#39;]))
 </code></pre>
-<h4><a id="PP-lineBreak"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-lineBreak">■</a> <a href="#PP-lineBreak"><code>PP.lineBreak ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-lineBreak"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-lineBreak">■</a> <a href="#PP-lineBreak"><code>PP.lineBreak ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.lineBreak</code> renders as a new line unless undone by <a href="#PP-group"><code>PP.group</code></a> in
 which case <code>PP.lineBreak</code> renders as empty.</p>
 <p>For example:</p>
@@ -143,7 +143,7 @@ which case <code>PP.lineBreak</code> renders as empty.</p>
 </code></pre>
 <pre><code class="hljs lang-js">PP.render(20, PP.group([&#39;Lol&#39;, PP.lineBreak, &#39;Bal&#39;]))
 </code></pre>
-<h4><a id="PP-softLine"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-softLine">■</a> <a href="#PP-softLine"><code>PP.softLine ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-softLine"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-softLine">■</a> <a href="#PP-softLine"><code>PP.softLine ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.softLine</code> renders as a space if the output fits and otherwise as a new line.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">I.seq(`Here is a small paragraph of text
@@ -154,7 +154,7 @@ which case <code>PP.lineBreak</code> renders as empty.</p>
       PP.intersperse(PP.softLine),
       PP.render(20))
 </code></pre>
-<h4><a id="PP-softBreak"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-softBreak">■</a> <a href="#PP-softBreak"><code>PP.softBreak ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-softBreak"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-softBreak">■</a> <a href="#PP-softBreak"><code>PP.softBreak ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.softBreak</code> renders as empty if the output fits and otherwise as a new line.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">I.seq(&#39;this.method(rocks)&#39;,
@@ -167,14 +167,14 @@ which case <code>PP.lineBreak</code> renders as empty.</p>
 <p>An array of documents is considered as a concatenation of documents.  For
 example, <code>[]</code> is an empty document and <code>[&#39;foo&#39;, &#39;bar&#39;]</code> is equivalent to
 <code>&#39;foobar&#39;</code>.</p>
-<h4><a id="PP-append"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-append">■</a> <a href="#PP-append"><code>PP.append(rhsDoc, lhsDoc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-append"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-append">■</a> <a href="#PP-append"><code>PP.append(rhsDoc, lhsDoc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.append</code> reverse concatenates the documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">I.seq(&#39;foo&#39;,
       PP.append(&#39;bar&#39;),
       PP.render(0))
 </code></pre>
-<h4><a id="PP-prepend"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-prepend">■</a> <a href="#PP-prepend"><code>PP.prepend(lhsDoc, rhsDoc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-prepend"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-prepend">■</a> <a href="#PP-prepend"><code>PP.prepend(lhsDoc, rhsDoc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.prepend</code> concatenates the documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">I.seq(&#39;bar&#39;,
@@ -182,24 +182,24 @@ example, <code>[]</code> is an empty document and <code>[&#39;foo&#39;, &#39;bar
       PP.render(0))
 </code></pre>
 <h3><a id="lists-of-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#lists-of-documents">■</a> <a href="#lists-of-documents">Lists of documents</a></h3>
-<h4><a id="PP-intersperse"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-intersperse">■</a> <a href="#PP-intersperse"><code>PP.intersperse(doc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-intersperse"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-intersperse">■</a> <a href="#PP-intersperse"><code>PP.intersperse(doc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.intersperse</code> puts the given separator document between each document in the
 given list of documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.intersperse(&#39;,&#39;, [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])
 </code></pre>
-<h4><a id="PP-punctuate"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-punctuate">■</a> <a href="#PP-punctuate"><code>PP.punctuate(sepDoc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-punctuate"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-punctuate">■</a> <a href="#PP-punctuate"><code>PP.punctuate(sepDoc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.punctuate</code> concatenates the given separator after each document in the given
 list of documents except the last.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.punctuate(&#39;,&#39;, [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])
 </code></pre>
 <h3><a id="lazy-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#lazy-documents">■</a> <a href="#lazy-documents">Lazy documents</a></h3>
-<h4><a id="PP-lazy"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-lazy">■</a> <a href="#PP-lazy"><code>PP.lazy(() =&gt; doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-lazy"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-lazy">■</a> <a href="#PP-lazy"><code>PP.lazy(() =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.lazy</code> creates a lazy document.  The given thunk is only invoked as needed to
 compute the document.</p>
 <h3><a id="enclosing-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#enclosing-documents">■</a> <a href="#enclosing-documents">Enclosing documents</a></h3>
-<h4><a id="PP-enclose"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-enclose">■</a> <a href="#PP-enclose"><code>PP.enclose([lhsDoc, rhsDoc], doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-enclose"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-enclose">■</a> <a href="#PP-enclose"><code>PP.enclose([lhsDoc, rhsDoc], doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.enclose</code> encloses the given document between the given pair of documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">I.seq(&#39;foo&#39;,
@@ -207,15 +207,15 @@ compute the document.</p>
       PP.render(0))
 </code></pre>
 <h4><a id="document-pair-constants"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#document-pair-constants">■</a> <a href="#document-pair-constants">Document pair constants</a></h4>
-<h5><a id="PP-angles"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-angles">■</a> <a href="#PP-angles"><code>PP.angles ~&gt; [&#39;&lt;&#39;, &#39;&gt;&#39;]</code></a> <small><sup>v0.1.0</sup></small></h5>
-<h5><a id="PP-braces"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-braces">■</a> <a href="#PP-braces"><code>PP.braces ~&gt; [&#39;{&#39;, &#39;}&#39;]</code></a> <small><sup>v0.1.0</sup></small></h5>
-<h5><a id="PP-brackets"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-brackets">■</a> <a href="#PP-brackets"><code>PP.brackets ~&gt; [&#39;[&#39;, &#39;]&#39;]</code></a> <small><sup>v0.1.0</sup></small></h5>
-<h5><a id="PP-dquotes"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-dquotes">■</a> <a href="#PP-dquotes"><code>PP.dquotes ~&gt; [&#39;&quot;&#39;, &#39;&quot;&#39;]</code></a> <small><sup>v0.1.0</sup></small></h5>
-<h5><a id="PP-parens"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-parens">■</a> <a href="#PP-parens"><code>PP.parens ~&gt; [&#39;(&#39;, &#39;)&#39;]</code></a> <small><sup>v0.1.0</sup></small></h5>
-<h5><a id="PP-spaces"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-spaces">■</a> <a href="#PP-spaces"><code>PP.spaces ~&gt; [&#39; &#39;, &#39; &#39;]</code></a> <small><sup>v0.1.0</sup></small></h5>
-<h5><a id="PP-squotes"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-squotes">■</a> <a href="#PP-squotes"><code>PP.squotes ~&gt; [&quot;&#39;&quot;, &quot;&#39;&quot;]</code></a> <small><sup>v0.1.0</sup></small></h5>
+<h5><a id="PP-angles"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-angles">■</a> <a href="#PP-angles"><code>PP.angles ~&gt; [&#39;&lt;&#39;, &#39;&gt;&#39;]</code></a> <small><sup>v1.0.0</sup></small></h5>
+<h5><a id="PP-braces"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-braces">■</a> <a href="#PP-braces"><code>PP.braces ~&gt; [&#39;{&#39;, &#39;}&#39;]</code></a> <small><sup>v1.0.0</sup></small></h5>
+<h5><a id="PP-brackets"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-brackets">■</a> <a href="#PP-brackets"><code>PP.brackets ~&gt; [&#39;[&#39;, &#39;]&#39;]</code></a> <small><sup>v1.0.0</sup></small></h5>
+<h5><a id="PP-dquotes"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-dquotes">■</a> <a href="#PP-dquotes"><code>PP.dquotes ~&gt; [&#39;&quot;&#39;, &#39;&quot;&#39;]</code></a> <small><sup>v1.0.0</sup></small></h5>
+<h5><a id="PP-parens"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-parens">■</a> <a href="#PP-parens"><code>PP.parens ~&gt; [&#39;(&#39;, &#39;)&#39;]</code></a> <small><sup>v1.0.0</sup></small></h5>
+<h5><a id="PP-spaces"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-spaces">■</a> <a href="#PP-spaces"><code>PP.spaces ~&gt; [&#39; &#39;, &#39; &#39;]</code></a> <small><sup>v1.0.0</sup></small></h5>
+<h5><a id="PP-squotes"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-squotes">■</a> <a href="#PP-squotes"><code>PP.squotes ~&gt; [&quot;&#39;&quot;, &quot;&#39;&quot;]</code></a> <small><sup>v1.0.0</sup></small></h5>
 <h3><a id="alternative-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#alternative-documents">■</a> <a href="#alternative-documents">Alternative documents</a></h3>
-<h4><a id="PP-choice"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-choice">■</a> <a href="#PP-choice"><code>PP.choice(wideDoc, narrowDoc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-choice"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-choice">■</a> <a href="#PP-choice"><code>PP.choice(wideDoc, narrowDoc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.choice(wideDoc, narrowDoc)</code> renders as the given <code>wideDoc</code> on a line if it
 fits within the maximum width and otherwise as the <code>narrowDoc</code>.</p>
 <p>For example:</p>
@@ -225,12 +225,12 @@ fits within the maximum width and otherwise as the <code>narrowDoc</code>.</p>
 </code></pre>
 <p>Note that usually the idea is that the narrow version can indeed be rendered
 more narrowly.</p>
-<h4><a id="PP-group"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-group">■</a> <a href="#PP-group"><code>PP.group(doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-group"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-group">■</a> <a href="#PP-group"><code>PP.group(doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.group</code> allows <a href="#PP-line"><code>PP.line</code></a>s and <a href="#PP-lineBreak"><code>PP.lineBreak</code></a>s
 within the given document to be undone if the result fits within the maximum
 width.</p>
 <h3><a id="nested-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#nested-documents">■</a> <a href="#nested-documents">Nested documents</a></h3>
-<h4><a id="PP-nest"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-nest">■</a> <a href="#PP-nest"><code>PP.nest(string | number, doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-nest"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-nest">■</a> <a href="#PP-nest"><code>PP.nest(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.nest</code> increases the nesting after next new line by the given string or by
 the given number of spaces.</p>
 <p>For example:</p>
@@ -241,25 +241,25 @@ the given number of spaces.</p>
       PP.render(6))
 </code></pre>
 <h3><a id="layout-dependent-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#layout-dependent-documents">■</a> <a href="#layout-dependent-documents">Layout dependent documents</a></h3>
-<h4><a id="PP-column"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-column">■</a> <a href="#PP-column"><code>PP.column(column =&gt; doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-column"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-column">■</a> <a href="#PP-column"><code>PP.column(column =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.column</code> allows a document to depend on the column at which the document
 starts.</p>
-<h4><a id="PP-nesting"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-nesting">■</a> <a href="#PP-nesting"><code>PP.nesting(nesting =&gt; doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-nesting"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-nesting">■</a> <a href="#PP-nesting"><code>PP.nesting(nesting =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.nesting</code> allows a document to depend on the nesting after the next new line.</p>
 <h3><a id="aligned-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#aligned-documents">■</a> <a href="#aligned-documents">Aligned documents</a></h3>
-<h4><a id="PP-align"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-align">■</a> <a href="#PP-align"><code>PP.align(doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-align"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-align">■</a> <a href="#PP-align"><code>PP.align(doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.align</code> creates a document such that the nesting of the document is aligned
 to the current column.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(10, PP.group([&#39;foo(&#39;, PP.align([&#39;bar,&#39;, PP.line, &#39;baz&#39;]), &#39;)&#39;]))
 </code></pre>
-<h4><a id="PP-hang"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-hang">■</a> <a href="#PP-hang"><code>PP.hang(string | number, doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-hang"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-hang">■</a> <a href="#PP-hang"><code>PP.hang(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.hang</code> creates a document such that the document is nested by the given
 string or number of spaces starting from the current column.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(10, PP.group([&#39;foo(&#39;, PP.hang(2, [&#39;bar,&#39;, PP.line, &#39;baz&#39;]), &#39;)&#39;]))
 </code></pre>
-<h4><a id="PP-indent"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-indent">■</a> <a href="#PP-indent"><code>PP.indent(string | number, doc) ~&gt; doc</code></a> <small><sup>v0.1.0</sup></small></h4>
+<h4><a id="PP-indent"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer#PP-indent">■</a> <a href="#PP-indent"><code>PP.indent(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.indent</code> creates a document such that the document is intended by the given
 prefix or number of spaces starting from the current column.</p>
 <pre><code class="hljs lang-js">I.seq([&#39;A comment:&#39;, PP.line, PP.line,
