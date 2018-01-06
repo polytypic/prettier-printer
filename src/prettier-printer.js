@@ -139,17 +139,17 @@ function layout(maxCols, usedCols, docs) {
 
 export const line = '\n'
 export const lineBreak = '\r'
-export const softLine = /*#__PURE__*/ Choice(' ', line)
-export const softBreak = /*#__PURE__*/ Choice('', lineBreak)
+export const softLine = Choice(' ', line)
+export const softBreak = Choice('', lineBreak)
 
 //
 
-export const prepend = /*#__PURE__*/ I.curry((lhs, rhs) => [lhs, rhs])
-export const append = /*#__PURE__*/ I.curry((rhs, lhs) => [lhs, rhs])
+export const prepend = I.curry((lhs, rhs) => [lhs, rhs])
+export const append = I.curry((rhs, lhs) => [lhs, rhs])
 
 //
 
-export const intersperse = /*#__PURE__*/ I.curry((sep, docs) => {
+export const intersperse = I.curry((sep, docs) => {
   const result = []
   const n = docs.length
   for (let i = 0; i < n; ++i) {
@@ -159,7 +159,7 @@ export const intersperse = /*#__PURE__*/ I.curry((sep, docs) => {
   return result
 })
 
-export const punctuate = /*#__PURE__*/ I.curry((sep, docs) => {
+export const punctuate = I.curry((sep, docs) => {
   const last = docs.length - 1
   return docs.map((doc, i) => (i !== last ? [doc, sep] : doc))
 })
@@ -170,15 +170,15 @@ export const lazy = Delay
 
 //
 
-export const parens = /*#__PURE__*/ I.freeze(['(', ')'])
-export const angles = /*#__PURE__*/ I.freeze(['<', '>'])
-export const braces = /*#__PURE__*/ I.freeze(['{', '}'])
-export const brackets = /*#__PURE__*/ I.freeze(['[', ']'])
-export const squotes = /*#__PURE__*/ I.freeze(["'", "'"])
-export const dquotes = /*#__PURE__*/ I.freeze(['"', '"'])
-export const spaces = /*#__PURE__*/ I.freeze([' ', ' '])
+export const parens = I.freeze(['(', ')'])
+export const angles = I.freeze(['<', '>'])
+export const braces = I.freeze(['{', '}'])
+export const brackets = I.freeze(['[', ']'])
+export const squotes = I.freeze(["'", "'"])
+export const dquotes = I.freeze(['"', '"'])
+export const spaces = I.freeze([' ', ' '])
 
-export const enclose = /*#__PURE__*/ I.curry((pair, doc) => [
+export const enclose = I.curry((pair, doc) => [
   pair[0],
   doc,
   pair[1]
@@ -186,7 +186,7 @@ export const enclose = /*#__PURE__*/ I.curry((pair, doc) => [
 
 //
 
-export const choice = /*#__PURE__*/ I.curry((wide, narrow) =>
+export const choice = I.curry((wide, narrow) =>
   Choice(flatten(wide), narrow)
 )
 
@@ -194,7 +194,7 @@ export const group = doc => choice(doc, doc)
 
 //
 
-export const nest = /*#__PURE__*/ I.curry(Nest)
+export const nest = I.curry(Nest)
 
 //
 
@@ -206,21 +206,21 @@ export const nesting = withNesting =>
 export const align = doc =>
   With((column, prefix) => Nest(column - prefix.length, doc))
 
-export const hang = /*#__PURE__*/ I.curry((prefix, doc) =>
+export const hang = I.curry((prefix, doc) =>
   align(Nest(prefix, doc))
 )
 
-export const indent = /*#__PURE__*/ I.curry((prefix, doc) =>
+export const indent = I.curry((prefix, doc) =>
   hang(prefix, [padding(prefix), doc])
 )
 
 //
 
-export const renderWith = /*#__PURE__*/ I.curry((actions, zero, maxCols, doc) =>
+export const renderWith = I.curry((actions, zero, maxCols, doc) =>
   output(actions, zero, Eager(layout(maxCols, 0, ['', doc, undefined])))
 )
 
-export const render = /*#__PURE__*/ renderWith(
+export const render = renderWith(
   {
     line: result => result + '\n',
     text: (result, text) => result + text
