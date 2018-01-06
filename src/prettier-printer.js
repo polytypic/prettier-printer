@@ -170,13 +170,17 @@ export const lazy = Delay
 
 //
 
-export const parens = I.freeze(['(', ')'])
+const sq = d => I.freeze([d, d])
+
 export const angles = I.freeze(['<', '>'])
 export const braces = I.freeze(['{', '}'])
 export const brackets = I.freeze(['[', ']'])
-export const squotes = I.freeze(["'", "'"])
-export const dquotes = I.freeze(['"', '"'])
-export const spaces = I.freeze([' ', ' '])
+export const dquotes = sq('"')
+export const lineBreaks = sq(lineBreak)
+export const lines = sq(line)
+export const parens = I.freeze(['(', ')'])
+export const spaces = sq(' ')
+export const squotes = sq("'")
 
 export const enclose = I.curry((pair, doc) => [pair[0], doc, pair[1]])
 
