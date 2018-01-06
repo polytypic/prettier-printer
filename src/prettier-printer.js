@@ -178,17 +178,11 @@ export const squotes = I.freeze(["'", "'"])
 export const dquotes = I.freeze(['"', '"'])
 export const spaces = I.freeze([' ', ' '])
 
-export const enclose = I.curry((pair, doc) => [
-  pair[0],
-  doc,
-  pair[1]
-])
+export const enclose = I.curry((pair, doc) => [pair[0], doc, pair[1]])
 
 //
 
-export const choice = I.curry((wide, narrow) =>
-  Choice(flatten(wide), narrow)
-)
+export const choice = I.curry((wide, narrow) => Choice(flatten(wide), narrow))
 
 export const group = doc => choice(doc, doc)
 
@@ -206,9 +200,7 @@ export const nesting = withNesting =>
 export const align = doc =>
   With((column, prefix) => Nest(column - prefix.length, doc))
 
-export const hang = I.curry((prefix, doc) =>
-  align(Nest(prefix, doc))
-)
+export const hang = I.curry((prefix, doc) => align(Nest(prefix, doc)))
 
 export const indent = I.curry((prefix, doc) =>
   hang(prefix, [padding(prefix), doc])
