@@ -40,6 +40,8 @@ describe('prettier-printer', () => {
   testEq('foo-bar', () =>
     I.seq(PP.intersperse('-', ['foo', 'bar']), PP.render(10))
   )
+  testEq('foo', () => I.seq(PP.intersperse('-', ['foo']), PP.render(10)))
+  testEq('', () => I.seq(PP.intersperse('-', []), PP.render(10)))
 
   testEq('foo', () => I.seq(PP.lazy(() => 'foo'), PP.render(10)))
 
@@ -53,6 +55,9 @@ describe('prettier-printer', () => {
       PP.render(10)
     )
   )
+  testEq([], () => PP.punctuate(',', []))
+  testEq(['x'], () => PP.punctuate(',', ['x']))
+  testEq([['x', ','], 'y'], () => PP.punctuate(',', ['x', 'y']))
 
   testEq('wide', () => I.seq(PP.choice('wide', 'narrow'), PP.render(10)))
 
