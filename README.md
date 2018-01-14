@@ -66,6 +66,8 @@ this library.
     * [`PP.align(doc) ~> doc`](#PP-align) <small><sup>v1.0.0</sup></small>
     * [`PP.hang(string | number, doc) ~> doc`](#PP-hang) <small><sup>v1.0.0</sup></small>
     * [`PP.indent(string | number, doc) ~> doc`](#PP-indent) <small><sup>v1.0.0</sup></small>
+  * [Additional combinators](#additional-combinators)
+    * [`PP.pretty(any) ~> doc`](#PP-pretty) <small><sup>v1.1.0</sup></small>
 * [Related Work](#related-work)
 
 ## <a id="tutorial"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#tutorial) Tutorial
@@ -407,6 +409,13 @@ PP.render(
 //   -- you are looking
 //   -- for.
 ```
+
+### <a id="additional-combinators"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#additional-combinators) [Additional combinators](#additional-combinators)
+
+#### <a id="PP-pretty"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#PP-pretty) [`PP.pretty(any) ~> doc`](#PP-pretty) <small><sup>v1.1.0</sup></small>
+
+`PP.pretty` formats any value as a document.  The exact format in which values
+will be rendered is currently not specified and should not be dependent upon.
 
 ## <a id="related-work"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#related-work) Related Work
 
