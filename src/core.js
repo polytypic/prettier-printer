@@ -91,6 +91,9 @@ function fits(maxCols, usedCols, print) {
   }
 }
 
+const layoutDelay = (maxCols, usedCols, docs) =>
+  Delay(() => layout(maxCols, usedCols, docs))
+
 export function layout(maxCols, usedCols, docs) {
   if (undefined === docs) return Nil
   const prefix = docs[0]
@@ -113,22 +116,20 @@ export function layout(maxCols, usedCols, docs) {
       switch (doc) {
         case '\n':
         case '\r':
-          return Linefeed(
-            prefix,
-            Delay(() => layout(maxCols, I.length(prefix), rest))
-          )
+          return Linefeed(prefix, layoutDelay(maxCols, I.length(prefix), rest))
         case '':
           return layout(maxCols, usedCols, rest)
         default:
           return Print(
             doc,
-            Delay(() => layout(maxCols, usedCols + I.length(doc), rest))
+            layoutDelay(maxCols, usedCols + I.length(doc), rest)
           )
       }
     case 5: {
       const wide = layout(maxCols, usedCols, [prefix, doc.w, rest])
-      if (!maxCols || fits(maxCols, usedCols, Eager(wide))) return wide
-      else return layout(maxCols, usedCols, [prefix, doc.n, rest])
+      return !maxCols || fits(maxCols, usedCols, Eager(wide))
+        ? wide
+        : layout(maxCols, usedCols, [prefix, doc.n, rest])
     }
     default:
       return layout(maxCols, usedCols, [prefix, doc.f(usedCols, prefix), rest])
