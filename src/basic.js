@@ -76,7 +76,7 @@ export const nest = I.curry(Nest)
 
 //
 
-export const column = withColumn => With((column, _) => withColumn(column))
+export const column = withColumn => With(column => withColumn(column))
 
 export const nesting = withNesting =>
   With((_, prefix) => withNesting(I.length(prefix)))
@@ -84,7 +84,7 @@ export const nesting = withNesting =>
 export const align = doc =>
   With((column, prefix) => Nest(column - I.length(prefix), doc))
 
-export const hang = I.curry((prefix, doc) => align(Nest(prefix, doc)))
+export const hang = I.pipe2U(Nest, align)
 
 export const indent = I.curry((prefix, doc) =>
   hang(prefix, [padding(prefix), doc])
