@@ -12,19 +12,22 @@ function show(x) {
   }
 }
 
-function testEq(expect, thunk) {
-  const expr = thunk
+const toExpr = thunk =>
+  thunk
     .toString()
-    .replace(/[ \n]+/g, ' ')
+    .replace(/\s+/g, ' ')
     .replace(/^\s*function\s*\(\s*\)\s*{\s*(return\s*)?/, '')
     .replace(/\s*;?\s*}\s*$/, '')
+    .replace(/function\s*(\([a-zA-Z]*\))\s*/g, '$1 => ')
+    .replace(/{\s*return\s*([^{;]+)\s*;\s*}/g, '$1')
+    .replace(/{\s*return\s*([^{;]+)\s*;\s*}/g, '$1')
 
-  it(`${expr} => ${show(expect)}`, () => {
+const testEq = (expect, thunk) =>
+  it(`${toExpr(thunk)} => ${show(expect)}`, () => {
     const actual = thunk()
     if (!I.acyclicEqualsU(actual, expect))
       throw new Error(`Expected: ${show(expect)}, actual: ${show(actual)}`)
   })
-}
 
 describe('prettier-printer', () => {
   testEq('foo', () => I.seq('foo', PP.render(10)))
