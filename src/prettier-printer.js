@@ -1,87 +1,107 @@
+import * as I from './ext/infestines'
+import * as V from './ext/partial.lenses.validation'
+
 import * as PP from './basic'
 
-import * as C from './contract'
+const doc = V.choose(
+  V.setAfter(
+    V.lazy(doc =>
+      V.cases(
+        [V.string, I.test(/^([\n\r]|[^\n\r]*)$/)],
+        [V.array, V.arrayIx(doc)],
+        [
+          V.or(
+            V.props({c: I.identical(0), v: V.fun}),
+            V.props({c: I.identical(1), v: V.any}),
+            V.props({
+              c: I.identical(3),
+              p: V.or(V.string, V.number),
+              d: V.any
+            }),
+            V.props({c: I.identical(5), w: V.any, n: V.any}),
+            V.props({c: I.identical(6), f: V.fun})
+          )
+        ]
+      )
+    )
+  )
+)
+
+const C =
+  process.env.NODE_ENV === 'production'
+    ? x => x
+    : (x, c) => {
+        const v = V.validate(c, x)
+        return V.fun(x) ? I.arityN(I.length(x), v) : v
+      }
 
 // Rendering documents
 
-export const render =
-  process.env.NODE_ENV === 'production' ? PP.render : C.render(PP.render)
-export const renderWith =
-  process.env.NODE_ENV === 'production'
-    ? PP.renderWith
-    : C.renderWith(PP.renderWith)
+export const render = C(PP.render, V.fn([V.number, doc], V.string))
+export const renderWith = C(
+  PP.renderWith,
+  V.fn([V.props({text: V.fun, line: V.fun}), V.any, V.number, doc], V.any)
+)
 
 // Document constants
 
-export {line} from './basic'
-export {lineBreak} from './basic'
-export {softLine} from './basic'
-export {softBreak} from './basic'
+export const line = C(PP.line, doc)
+export const lineBreak = C(PP.lineBreak, doc)
+export const softLine = C(PP.softLine, doc)
+export const softBreak = C(PP.softBreak, doc)
 
 // Concatenating documents
 
-export const prepend =
-  process.env.NODE_ENV === 'production' ? PP.prepend : C.prepend(PP.prepend)
-export const append =
-  process.env.NODE_ENV === 'production' ? PP.append : C.append(PP.append)
+export const append = C(PP.append, V.fn([doc, doc], doc))
+export const prepend = C(PP.prepend, V.fn([doc, doc], doc))
 
 // Lists of documents
 
-export const intersperse =
-  process.env.NODE_ENV === 'production'
-    ? PP.intersperse
-    : C.intersperse(PP.intersperse)
-export const punctuate =
-  process.env.NODE_ENV === 'production'
-    ? PP.punctuate
-    : C.punctuate(PP.punctuate)
+export const intersperse = C(
+  PP.intersperse,
+  V.fn([doc, V.arrayId(doc)], V.arrayId(doc))
+)
+export const punctuate = C(
+  PP.punctuate,
+  V.fn([doc, V.arrayId(doc)], V.arrayId(doc))
+)
 
 // Lazy documents
 
-export const lazy =
-  process.env.NODE_ENV === 'production' ? PP.lazy : C.lazy(PP.lazy)
+export const lazy = C(PP.lazy, V.fn([V.fn([], doc)], doc))
 
 // Enclosing documents
 
-export const enclose =
-  process.env.NODE_ENV === 'production' ? PP.enclose : C.enclose(PP.enclose)
+export const enclose = C(PP.enclose, V.fn([V.sq(doc), doc], doc))
 
 // Document pair constants
 
-export {angles} from './basic'
-export {braces} from './basic'
-export {brackets} from './basic'
-export {dquotes} from './basic'
-export {lineBreaks} from './basic'
-export {lines} from './basic'
-export {parens} from './basic'
-export {spaces} from './basic'
-export {squotes} from './basic'
+export const angles = C(PP.angles, V.sq(doc))
+export const braces = C(PP.braces, V.sq(doc))
+export const brackets = C(PP.brackets, V.sq(doc))
+export const dquotes = C(PP.dquotes, V.sq(doc))
+export const lineBreaks = C(PP.lineBreaks, V.sq(doc))
+export const lines = C(PP.lines, V.sq(doc))
+export const parens = C(PP.parens, V.sq(doc))
+export const spaces = C(PP.spaces, V.sq(doc))
+export const squotes = C(PP.squotes, V.sq(doc))
 
 // Alternative documents
 
-export const choice =
-  process.env.NODE_ENV === 'production' ? PP.choice : C.choice(PP.choice)
-export const group =
-  process.env.NODE_ENV === 'production' ? PP.group : C.group(PP.group)
+export const choice = C(PP.choice, V.fn([doc, doc], doc))
+export const group = C(PP.group, V.fn([doc], doc))
 
 // Nested documents
 
-export const nest =
-  process.env.NODE_ENV === 'production' ? PP.nest : C.nest(PP.nest)
+export const nest = C(PP.nest, V.fn([V.or(V.string, V.number), doc], doc))
 
 // Layout dependent documents
 
-export const column =
-  process.env.NODE_ENV === 'production' ? PP.column : C.column(PP.column)
-export const nesting =
-  process.env.NODE_ENV === 'production' ? PP.nesting : C.nesting(PP.nesting)
+export const column = C(PP.column, V.fn([V.fn([V.number], doc)], doc))
+export const nesting = C(PP.nesting, V.fn([V.fn([V.number], doc)], doc))
 
 // Aligned documents
 
-export const align =
-  process.env.NODE_ENV === 'production' ? PP.align : C.align(PP.align)
-export const hang =
-  process.env.NODE_ENV === 'production' ? PP.hang : C.hang(PP.hang)
-export const indent =
-  process.env.NODE_ENV === 'production' ? PP.indent : C.indent(PP.indent)
+export const align = C(PP.align, V.fn([doc], doc))
+export const hang = C(PP.hang, V.fn([V.or(V.string, V.number), doc], doc))
+export const indent = C(PP.indent, V.fn([V.or(V.string, V.number), doc], doc))
