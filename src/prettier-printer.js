@@ -3,27 +3,23 @@ import * as V from './ext/partial.lenses.validation'
 
 import * as PP from './basic'
 
-const doc = V.choose(
-  V.setAfter(
-    V.lazy(doc =>
-      V.cases(
-        [V.string, I.test(/^([\n\r]|[^\n\r]*)$/)],
-        [V.array, V.arrayIx(doc)],
-        [
-          V.or(
-            V.props({c: I.identical(0), v: V.fun}),
-            V.props({c: I.identical(1), v: V.any}),
-            V.props({
-              c: I.identical(3),
-              p: V.or(V.string, V.number),
-              d: V.any
-            }),
-            V.props({c: I.identical(5), w: V.any, n: V.any}),
-            V.props({c: I.identical(6), f: V.fun})
-          )
-        ]
+const doc = V.lazy(doc =>
+  V.cases(
+    [V.string, I.test(/^([\n\r]|[^\n\r]*)$/)],
+    [V.array, V.arrayIx(doc)],
+    [
+      V.or(
+        V.props({c: I.identical(0), v: V.fun}),
+        V.props({c: I.identical(1), v: V.any}),
+        V.props({
+          c: I.identical(3),
+          p: V.or(V.string, V.number),
+          d: V.any
+        }),
+        V.props({c: I.identical(5), w: V.any, n: V.any}),
+        V.props({c: I.identical(6), f: V.fun})
       )
-    )
+    ]
   )
 )
 
