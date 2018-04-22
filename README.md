@@ -34,7 +34,7 @@ maximum width.
     * [Document pair constants](#document-pair-constants)
       * [`PP.angles ~> ['<', '>']`](#PP-angles) <small><sup>v1.0.0</sup></small>
       * [`PP.braces ~> ['{', '}']`](#PP-braces) <small><sup>v1.0.0</sup></small>
-      * [`PP.brackets ~> ['[', ']']`](#PP-brackets) <small><sup>v1.0.0</sup></small>
+      * <a href="#PP-brackets"><code>PP.brackets ~&gt; ['[', ']']</code></a> <small><sup>v1.0.0</sup></small>
       * [`PP.dquotes ~> ['"', '"']`](#PP-dquotes) <small><sup>v1.0.0</sup></small>
       * [`PP.lineBreaks ~> [PP.lineBreak, PP.lineBreak]`](#PP-lineBreaks) <small><sup>v1.1.0</sup></small>
       * [`PP.lines ~> [PP.line, PP.line]`](#PP-lines) <small><sup>v1.1.0</sup></small>
@@ -248,7 +248,7 @@ PP.render(0, PP.enclose(PP.parens, 'foo'))
 
 ##### <a id="PP-braces"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#PP-braces) [`PP.braces ~> ['{', '}']`](#PP-braces) <small><sup>v1.0.0</sup></small>
 
-##### <a id="PP-brackets"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#PP-brackets) [`PP.brackets ~> ['[', ']']`](#PP-brackets) <small><sup>v1.0.0</sup></small>
+##### <a id="PP-brackets"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#PP-brackets) <a href="#PP-brackets"><code>PP.brackets ~&gt; ['[', ']']</code></a> <small><sup>v1.0.0</sup></small>
 
 ##### <a id="PP-dquotes"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#PP-dquotes) [`PP.dquotes ~> ['"', '"']`](#PP-dquotes) <small><sup>v1.0.0</sup></small>
 

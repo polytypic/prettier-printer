@@ -1,7 +1,34 @@
-import { curry, freeze, isArray, isString, pipe2U } from 'infestines';
+import { isArray, isFunction, isNumber, isString, arityN, curry, freeze, pipe2U, identicalU } from 'infestines';
+import { accept, choose, setAfter, lazy, cases, arrayIx, or, props, validate, arrayId, freeFn, args, tuple } from 'partial.lenses.validation';
+
+var length = function length(x) {
+  return x.length;
+};
+
+var reduceRight = /*#__PURE__*/curry(function (fn, z, xs) {
+  return xs.reduceRight(fn, z);
+});
+
+var repeat = /*#__PURE__*/curry(function (n, s) {
+  return s.repeat(n);
+});
+
+var identical = /*#__PURE__*/curry(identicalU);
+
+var test = /*#__PURE__*/curry(function (re, s) {
+  return isString(s) && re.test(s);
+});
+
+var fn = function fn(args$$1, res) {
+  return freeFn(args.apply(null, args$$1), res);
+};
+
+var sq = function sq(t) {
+  return tuple(t, t);
+};
 
 var padding = function padding(n) {
-  return isString(n) ? n : ' '.repeat(n);
+  return isString(n) ? n : repeat(n, ' ');
 };
 
 var Delay = function Delay(thunk) {
@@ -43,7 +70,7 @@ function flatten(doc) {
     case 2:
       {
         var loop = function loop(i) {
-          switch (doc.length - i) {
+          switch (length(doc) - i) {
             case 0:
               return '';
             case 1:
@@ -110,11 +137,17 @@ function fits(maxCols, usedCols, print) {
     if (print[0] < 2) {
       return true;
     } else {
-      usedCols += print[1].length;
+      usedCols += length(print[1]);
       print = print[2];
     }
   }
 }
+
+var layoutDelay = function layoutDelay(maxCols, usedCols, docs) {
+  return Delay(function () {
+    return layout(maxCols, usedCols, docs);
+  });
+};
 
 function layout(maxCols, usedCols, docs) {
   if (undefined === docs) return Nil;
@@ -127,29 +160,25 @@ function layout(maxCols, usedCols, docs) {
     case 1:
       return layout(maxCols, usedCols, [prefix, doc.v, rest]);
     case 2:
-      return layout(maxCols, usedCols, doc.reduceRight(function (rest, doc) {
+      return layout(maxCols, usedCols, reduceRight(function (rest, doc) {
         return [prefix, doc, rest];
-      }, rest));
+      }, rest, doc));
     case 3:
       return layout(maxCols, usedCols, [prefix + padding(doc.p), doc.d, rest]);
     case 4:
       switch (doc) {
         case '\n':
         case '\r':
-          return Linefeed(prefix, Delay(function () {
-            return layout(maxCols, prefix.length, rest);
-          }));
+          return Linefeed(prefix, layoutDelay(maxCols, length(prefix), rest));
         case '':
           return layout(maxCols, usedCols, rest);
         default:
-          return Print(doc, Delay(function () {
-            return layout(maxCols, usedCols + doc.length, rest);
-          }));
+          return Print(doc, layoutDelay(maxCols, usedCols + length(doc), rest));
       }
     case 5:
       {
         var wide = layout(maxCols, usedCols, [prefix, doc.w, rest]);
-        if (!maxCols || fits(maxCols, usedCols, Eager(wide))) return wide;else return layout(maxCols, usedCols, [prefix, doc.n, rest]);
+        return !maxCols || fits(maxCols, usedCols, Eager(wide)) ? wide : layout(maxCols, usedCols, [prefix, doc.n, rest]);
       }
     default:
       return layout(maxCols, usedCols, [prefix, doc.f(usedCols, prefix), rest]);
@@ -176,34 +205,45 @@ var append = /*#__PURE__*/curry(function (rhs, lhs) {
 
 var intersperse = /*#__PURE__*/curry(function (sep, docs) {
   var result = [];
-  var n = docs.length;
-  for (var i = 0; i < n; ++i) {
-    if (i) result.push(sep);
-    result.push(docs[i]);
-  }
-  return result;
+  var n = length(docs);
+  if (n) result.push(docs[0]);
+  for (var i = 1; i < n; ++i) {
+    result.push(sep, docs[i]);
+  }return result;
 });
 
 var punctuate = /*#__PURE__*/curry(function (sep, docs) {
-  var last = docs.length - 1;
-  return docs.map(function (doc, i) {
-    return i !== last ? [doc, sep] : doc;
-  });
+  var r = [];
+  var n = length(docs);
+  var nm1 = n - 1;
+  for (var i = 0; i < nm1; ++i) {
+    r.push([docs[i], sep]);
+  }if (n) r.push(docs[nm1]);
+  return r;
 });
 
 //
 
-var lazy = Delay;
+var lazy$1 = Delay;
 
 //
 
-var parens = /*#__PURE__*/freeze(['(', ')']);
-var angles = /*#__PURE__*/freeze(['<', '>']);
-var braces = /*#__PURE__*/freeze(['{', '}']);
-var brackets = /*#__PURE__*/freeze(['[', ']']);
-var squotes = /*#__PURE__*/freeze(["'", "'"]);
-var dquotes = /*#__PURE__*/freeze(['"', '"']);
-var spaces = /*#__PURE__*/freeze([' ', ' ']);
+var pair = function pair(l, r) {
+  return freeze([l, r]);
+};
+var sq$1 = function sq(d) {
+  return pair(d, d);
+};
+
+var angles = /*#__PURE__*/pair('<', '>');
+var braces = /*#__PURE__*/pair('{', '}');
+var brackets = /*#__PURE__*/pair('[', ']');
+var dquotes = /*#__PURE__*/sq$1('"');
+var lineBreaks = /*#__PURE__*/sq$1(lineBreak);
+var lines = /*#__PURE__*/sq$1(line);
+var parens = /*#__PURE__*/pair('(', ')');
+var spaces = /*#__PURE__*/sq$1(' ');
+var squotes = /*#__PURE__*/sq$1("'");
 
 var enclose = /*#__PURE__*/curry(function (pair, doc) {
   return [pair[0], doc, pair[1]];
@@ -226,26 +266,24 @@ var nest = /*#__PURE__*/curry(Nest);
 //
 
 var column = function column(withColumn) {
-  return With(function (column, _) {
+  return With(function (column) {
     return withColumn(column);
   });
 };
 
 var nesting = function nesting(withNesting) {
   return With(function (_, prefix) {
-    return withNesting(prefix.length);
+    return withNesting(length(prefix));
   });
 };
 
 var align = function align(doc) {
   return With(function (column, prefix) {
-    return Nest(column - prefix.length, doc);
+    return Nest(column - length(prefix), doc);
   });
 };
 
-var hang = /*#__PURE__*/curry(function (prefix, doc) {
-  return align(Nest(prefix, doc));
-});
+var hang = /*#__PURE__*/pipe2U(Nest, align);
 
 var indent = /*#__PURE__*/curry(function (prefix, doc) {
   return hang(prefix, [padding(prefix), doc]);
@@ -266,4 +304,81 @@ var render = /*#__PURE__*/renderWith({
   }
 }, '');
 
-export { line, lineBreak, softLine, softBreak, prepend, append, intersperse, punctuate, lazy, parens, angles, braces, brackets, squotes, dquotes, spaces, enclose, choice, group, nest, column, nesting, align, hang, indent, renderWith, render };
+var doc = /*#__PURE__*/choose( /*#__PURE__*/setAfter( /*#__PURE__*/lazy(function (doc) {
+  return cases([isString, test(/^([\n\r]|[^\n\r]*)$/)], [isArray, arrayIx(doc)], [or(props({ c: identical(0), v: isFunction }), props({ c: identical(1), v: accept }), props({
+    c: identical(3),
+    p: or(isString, isNumber),
+    d: accept
+  }), props({ c: identical(5), w: accept, n: accept }), props({ c: identical(6), f: isFunction }))]);
+})));
+
+var C = process.env.NODE_ENV === 'production' ? function (x) {
+  return x;
+} : function (x, c) {
+  var v = validate(c, x);
+  return isFunction(x) ? arityN(length(x), v) : v;
+};
+
+// Rendering documents
+
+var render$1 = /*#__PURE__*/C(render, /*#__PURE__*/fn([isNumber, doc], isString));
+var renderWith$1 = /*#__PURE__*/C(renderWith, /*#__PURE__*/fn([/*#__PURE__*/props({ text: isFunction, line: isFunction }), accept, isNumber, doc], accept));
+
+// Document constants
+
+var line$1 = /*#__PURE__*/C(line, doc);
+var lineBreak$1 = /*#__PURE__*/C(lineBreak, doc);
+var softLine$1 = /*#__PURE__*/C(softLine, doc);
+var softBreak$1 = /*#__PURE__*/C(softBreak, doc);
+
+// Concatenating documents
+
+var append$1 = /*#__PURE__*/C(append, /*#__PURE__*/fn([doc, doc], doc));
+var prepend$1 = /*#__PURE__*/C(prepend, /*#__PURE__*/fn([doc, doc], doc));
+
+// Lists of documents
+
+var intersperse$1 = /*#__PURE__*/C(intersperse, /*#__PURE__*/fn([doc, /*#__PURE__*/arrayId(doc)], /*#__PURE__*/arrayId(doc)));
+var punctuate$1 = /*#__PURE__*/C(punctuate, /*#__PURE__*/fn([doc, /*#__PURE__*/arrayId(doc)], /*#__PURE__*/arrayId(doc)));
+
+// Lazy documents
+
+var lazy$2 = /*#__PURE__*/C(lazy$1, /*#__PURE__*/fn([/*#__PURE__*/fn([], doc)], doc));
+
+// Enclosing documents
+
+var enclose$1 = /*#__PURE__*/C(enclose, /*#__PURE__*/fn([/*#__PURE__*/sq(doc), doc], doc));
+
+// Document pair constants
+
+var angles$1 = /*#__PURE__*/C(angles, /*#__PURE__*/sq(doc));
+var braces$1 = /*#__PURE__*/C(braces, /*#__PURE__*/sq(doc));
+var brackets$1 = /*#__PURE__*/C(brackets, /*#__PURE__*/sq(doc));
+var dquotes$1 = /*#__PURE__*/C(dquotes, /*#__PURE__*/sq(doc));
+var lineBreaks$1 = /*#__PURE__*/C(lineBreaks, /*#__PURE__*/sq(doc));
+var lines$1 = /*#__PURE__*/C(lines, /*#__PURE__*/sq(doc));
+var parens$1 = /*#__PURE__*/C(parens, /*#__PURE__*/sq(doc));
+var spaces$1 = /*#__PURE__*/C(spaces, /*#__PURE__*/sq(doc));
+var squotes$1 = /*#__PURE__*/C(squotes, /*#__PURE__*/sq(doc));
+
+// Alternative documents
+
+var choice$1 = /*#__PURE__*/C(choice, /*#__PURE__*/fn([doc, doc], doc));
+var group$1 = /*#__PURE__*/C(group, /*#__PURE__*/fn([doc], doc));
+
+// Nested documents
+
+var nest$1 = /*#__PURE__*/C(nest, /*#__PURE__*/fn([/*#__PURE__*/or(isString, isNumber), doc], doc));
+
+// Layout dependent documents
+
+var column$1 = /*#__PURE__*/C(column, /*#__PURE__*/fn([/*#__PURE__*/fn([isNumber], doc)], doc));
+var nesting$1 = /*#__PURE__*/C(nesting, /*#__PURE__*/fn([/*#__PURE__*/fn([isNumber], doc)], doc));
+
+// Aligned documents
+
+var align$1 = /*#__PURE__*/C(align, /*#__PURE__*/fn([doc], doc));
+var hang$1 = /*#__PURE__*/C(hang, /*#__PURE__*/fn([/*#__PURE__*/or(isString, isNumber), doc], doc));
+var indent$1 = /*#__PURE__*/C(indent, /*#__PURE__*/fn([/*#__PURE__*/or(isString, isNumber), doc], doc));
+
+export { render$1 as render, renderWith$1 as renderWith, line$1 as line, lineBreak$1 as lineBreak, softLine$1 as softLine, softBreak$1 as softBreak, append$1 as append, prepend$1 as prepend, intersperse$1 as intersperse, punctuate$1 as punctuate, lazy$2 as lazy, enclose$1 as enclose, angles$1 as angles, braces$1 as braces, brackets$1 as brackets, dquotes$1 as dquotes, lineBreaks$1 as lineBreaks, lines$1 as lines, parens$1 as parens, spaces$1 as spaces, squotes$1 as squotes, choice$1 as choice, group$1 as group, nest$1 as nest, column$1 as column, nesting$1 as nesting, align$1 as align, hang$1 as hang, indent$1 as indent };

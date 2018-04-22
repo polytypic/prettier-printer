@@ -9,7 +9,8 @@
   ],
   "homepage": "https://github.com/polytypic/prettier-printer",
   "dependencies": {
-    "infestines": "^0.4.5"
+    "infestines": "^0.4.5",
+    "partial.lenses.validation": "^1.0.0"
   },
   "ignore": ["*", "!*.md", "!dist/*"]
 }

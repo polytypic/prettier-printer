@@ -116,6 +116,7 @@ document within the specified maximum.  A width of <code>0</code> means that the
 maximum.  See also <a href="#PP-renderWith"><code>PP.renderWith</code></a>.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(10, PP.indent(&#39;-- &#39;, PP.group(PP.intersperse(PP.line, [&#39;Hello,&#39;, &#39;world!&#39;]))))
+
 </code></pre>
 <h4><a id="PP-renderWith"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-renderWith">■</a> <a href="#PP-renderWith"><code>PP.renderWith({text: (state, string) =&gt; state, line: state =&gt; state}, state, maxCols, doc) ~&gt; state</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.renderWith</code> renders the document with the given actions <code>text</code> and <code>line</code>.
@@ -129,16 +130,20 @@ atomic document.  For example, <code>&#39;&#39;</code> is an empty document and 
 which case <code>PP.line</code> renders as a space.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(20, [&#39;Hello,&#39;, PP.line, &#39;world!&#39;])
+
 </code></pre>
 <pre><code class="hljs lang-js">PP.render(20, PP.group([&#39;Hello,&#39;, PP.line, &#39;world!&#39;]))
+
 </code></pre>
 <h4><a id="PP-lineBreak"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-lineBreak">■</a> <a href="#PP-lineBreak"><code>PP.lineBreak ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.lineBreak</code> renders as a new line unless undone by <a href="#PP-group"><code>PP.group</code></a> in
 which case <code>PP.lineBreak</code> renders as empty.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(20, [&#39;Lol&#39;, PP.lineBreak, &#39;Bal&#39;])
+
 </code></pre>
 <pre><code class="hljs lang-js">PP.render(20, PP.group([&#39;Lol&#39;, PP.lineBreak, &#39;Bal&#39;]))
+
 </code></pre>
 <h4><a id="PP-softLine"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-softLine">■</a> <a href="#PP-softLine"><code>PP.softLine ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.softLine</code> renders as a space if the output fits and otherwise as a new line.</p>
@@ -150,11 +155,13 @@ which case <code>PP.lineBreak</code> renders as empty.</p>
     R.split(
       /\s+/,
       &#39;Here is a paragraph of text that we will format to a desired width.&#39;)))
+
 </code></pre>
 <h4><a id="PP-softBreak"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-softBreak">■</a> <a href="#PP-softBreak"><code>PP.softBreak ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.softBreak</code> renders as empty if the output fits and otherwise as a new line.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(10, PP.intersperse(PP.softBreak, R.split(/\b/, &#39;this.method(rocks)&#39;)))
+
 </code></pre>
 <h3><a id="concatenating-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#concatenating-documents">■</a> <a href="#concatenating-documents">Concatenating documents</a></h3>
 <p>An array of documents is considered as a concatenation of documents.  For
@@ -164,11 +171,13 @@ example, <code>[]</code> is an empty document and <code>[&#39;foo&#39;, &#39;bar
 <p><code>PP.append</code> reverse concatenates the documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(0, PP.append(&#39;bar&#39;, &#39;foo&#39;))
+
 </code></pre>
 <h4><a id="PP-prepend"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-prepend">■</a> <a href="#PP-prepend"><code>PP.prepend(lhsDoc, rhsDoc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.prepend</code> concatenates the documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(0, PP.prepend(&#39;foo&#39;, &#39;bar&#39;))
+
 </code></pre>
 <h3><a id="lists-of-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#lists-of-documents">■</a> <a href="#lists-of-documents">Lists of documents</a></h3>
 <h4><a id="PP-intersperse"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-intersperse">■</a> <a href="#PP-intersperse"><code>PP.intersperse(doc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v1.0.0</sup></small></h4>
@@ -176,12 +185,14 @@ example, <code>[]</code> is an empty document and <code>[&#39;foo&#39;, &#39;bar
 given list of documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.intersperse(&#39;,&#39;, [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])
+
 </code></pre>
 <h4><a id="PP-punctuate"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-punctuate">■</a> <a href="#PP-punctuate"><code>PP.punctuate(sepDoc, [...docs]) ~&gt; [...docs]</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.punctuate</code> concatenates the given separator after each document in the given
 list of documents except the last.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.punctuate(&#39;,&#39;, [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])
+
 </code></pre>
 <h3><a id="lazy-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#lazy-documents">■</a> <a href="#lazy-documents">Lazy documents</a></h3>
 <h4><a id="PP-lazy"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-lazy">■</a> <a href="#PP-lazy"><code>PP.lazy(() =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
@@ -192,6 +203,7 @@ compute the document.</p>
 <p><code>PP.enclose</code> encloses the given document between the given pair of documents.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(0, PP.enclose(PP.parens, &#39;foo&#39;))
+
 </code></pre>
 <h4><a id="document-pair-constants"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#document-pair-constants">■</a> <a href="#document-pair-constants">Document pair constants</a></h4>
 <h5><a id="PP-angles"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-angles">■</a> <a href="#PP-angles"><code>PP.angles ~&gt; [&#39;&lt;&#39;, &#39;&gt;&#39;]</code></a> <small><sup>v1.0.0</sup></small></h5>
@@ -211,8 +223,10 @@ fits within the maximum width and otherwise as the <code>narrowDoc</code>.
 are undone like with <a href="#PP-group"><code>PP.group</code></a>.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(5, PP.choice(&#39;wide&#39;, &#39;narrow&#39;))
+
 </code></pre>
 <pre><code class="hljs lang-js">PP.render(3, PP.choice(&#39;wide&#39;, &#39;narrow&#39;))
+
 </code></pre>
 <p>Note that usually the idea is that the narrow version can indeed be rendered
 more narrowly.</p>
@@ -220,6 +234,7 @@ more narrowly.</p>
 <pre><code class="hljs lang-js">var hyphen = PP.choice(&#39;&#39;, [&#39;-&#39;, PP.lineBreak])
 
 PP.render(5, PP.intersperse(hyphen, [&#39;hy&#39;, &#39;phen&#39;, &#39;at&#39;, &#39;ed&#39;]))
+
 </code></pre>
 <h4><a id="PP-group"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-group">■</a> <a href="#PP-group"><code>PP.group(doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.group</code> allows <a href="#PP-line"><code>PP.line</code></a>s and <a href="#PP-lineBreak"><code>PP.lineBreak</code></a>s
@@ -231,6 +246,7 @@ width.  <code>PP.group(doc)</code> is equivalent to <a href="#PP-choice"><code>P
 the given number of spaces.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(6, PP.nest(2, PP.group(PP.intersperse(PP.line, [&#39;foo&#39;, &#39;bar&#39;]))))
+
 </code></pre>
 <h3><a id="layout-dependent-documents"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#layout-dependent-documents">■</a> <a href="#layout-dependent-documents">Layout dependent documents</a></h3>
 <h4><a id="PP-column"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-column">■</a> <a href="#PP-column"><code>PP.column(column =&gt; doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
@@ -244,12 +260,14 @@ starts.</p>
 to the current column.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(10, PP.group([&#39;foo(&#39;, PP.align([&#39;bar,&#39;, PP.line, &#39;baz&#39;]), &#39;)&#39;]))
+
 </code></pre>
 <h4><a id="PP-hang"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-hang">■</a> <a href="#PP-hang"><code>PP.hang(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.hang</code> creates a document such that the document is nested by the given
 string or number of spaces starting from the current column.</p>
 <p>For example:</p>
 <pre><code class="hljs lang-js">PP.render(10, PP.group([&#39;foo(&#39;, PP.hang(2, [&#39;bar,&#39;, PP.line, &#39;baz&#39;]), &#39;)&#39;]))
+
 </code></pre>
 <h4><a id="PP-indent"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-indent">■</a> <a href="#PP-indent"><code>PP.indent(string | number, doc) ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.indent</code> creates a document such that the document is indented by the given
@@ -266,6 +284,7 @@ prefix or number of spaces starting from the current column.</p>
         PP.intersperse(
           PP.softLine,
           R.split(/\s+/, &#39;This is the comment that you are looking for.&#39;)))])))
+
 </code></pre>
 <h2><a id="related-work"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#related-work">■</a> Related Work</h2>
 <ul>
@@ -293,7 +312,9 @@ underneath.</li>
       </code></pre>
     </div>
     <script type="text/javascript" src="https://unpkg.com/babel-polyfill/dist/polyfill.min.js"></script>
-    <script type="text/javascript" src="infestines.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/infestines/dist/infestines.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/partial.lenses/dist/partial.lenses.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/partial.lenses.validation/dist/partial.lenses.validation.js"></script>
     <script type="text/javascript" src="prettier-printer.js"></script>
     <script type="text/javascript" src="https://unpkg.com/ramda/dist/ramda.min.js"></script>
     <script type="text/javascript" src="fw/klipse-settings.js"></script>
