@@ -4,6 +4,7 @@
   "description": "A pretty printing library",
   "module": "dist/prettier-printer.es.js",
   "main": "dist/prettier-printer.cjs.js",
+  "typings": "src/prettier-printer.d.ts",
   "scripts": {
     "dist": "rollup -c && cp dist/prettier-printer.js docs/",
     "docs": "klipse-github-docs-generator",
