@@ -2,7 +2,9 @@ import * as I from './ext/infestines'
 
 export const padding = n => (I.isString(n) ? n : I.repeat(n, ' '))
 
-export const Delay = thunk => ({c: 0, v: thunk})
+export const Delay = function lazy(thunk) {
+  return {c: 0, v: thunk}
+}
 export const Eager = value => ({c: 1, v: value})
 function force(x) {
   if (x.c !== 0) return x.v
@@ -12,7 +14,9 @@ function force(x) {
   return (x.v = th())
 }
 
-export const Nest = (prefix, doc) => ({c: 3, p: prefix, d: doc})
+export const Nest = function nest(prefix, doc) {
+  return {c: 3, p: prefix, d: doc}
+}
 export const Choice = (wide, narrow) => ({c: 5, w: wide, n: narrow})
 export const With = fn => ({c: 6, f: fn})
 

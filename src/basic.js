@@ -21,12 +21,16 @@ export const softBreak = Choice('', lineBreak)
 
 //
 
-export const prepend = I.curry((lhs, rhs) => [lhs, rhs])
-export const append = I.curry((rhs, lhs) => [lhs, rhs])
+export const prepend = I.curry(function prepend(lhs, rhs) {
+  return [lhs, rhs]
+})
+export const append = I.curry(function append(rhs, lhs) {
+  return [lhs, rhs]
+})
 
 //
 
-export const intersperse = I.curry((sep, docs) => {
+export const intersperse = I.curry(function intersperse(sep, docs) {
   const result = []
   const n = I.length(docs)
   if (n) result.push(docs[0])
@@ -34,7 +38,7 @@ export const intersperse = I.curry((sep, docs) => {
   return result
 })
 
-export const punctuate = I.curry((sep, docs) => {
+export const punctuate = I.curry(function punctuate(sep, docs) {
   const r = []
   const n = I.length(docs)
   const nm1 = n - 1
@@ -62,11 +66,15 @@ export const parens = pair('(', ')')
 export const spaces = sq(' ')
 export const squotes = sq("'")
 
-export const enclose = I.curry((pair, doc) => [pair[0], doc, pair[1]])
+export const enclose = I.curry(function enclose(pair, doc) {
+  return [pair[0], doc, pair[1]]
+})
 
 //
 
-export const choice = I.curry((wide, narrow) => Choice(flatten(wide), narrow))
+export const choice = I.curry(function choice(wide, narrow) {
+  return Choice(flatten(wide), narrow)
+})
 
 export const group = doc => choice(doc, doc)
 
@@ -79,22 +87,33 @@ export const nest = I.curry(Nest)
 export const column = withColumn => With(column => withColumn(column))
 
 export const nesting = withNesting =>
-  With((_, prefix) => withNesting(I.length(prefix)))
+  With(function nesting(_, prefix) {
+    return withNesting(I.length(prefix))
+  })
 
 export const align = doc =>
-  With((column, prefix) => Nest(column - I.length(prefix), doc))
+  With(function align(column, prefix) {
+    return Nest(column - I.length(prefix), doc)
+  })
 
-export const hang = I.pipe2U(Nest, align)
+export const hang = I.curry(function hang(indent, doc) {
+  return align(Nest(indent, doc))
+})
 
-export const indent = I.curry((prefix, doc) =>
-  hang(prefix, [padding(prefix), doc])
-)
+export const indent = I.curry(function indent(prefix, doc) {
+  return hang(prefix, [padding(prefix), doc])
+})
 
 //
 
-export const renderWith = I.curry((actions, zero, maxCols, doc) =>
-  output(actions, zero, Eager(layout(maxCols, 0, ['', doc, undefined])))
-)
+export const renderWith = I.curry(function renderWith(
+  actions,
+  zero,
+  maxCols,
+  doc
+) {
+  return output(actions, zero, Eager(layout(maxCols, 0, ['', doc, undefined])))
+})
 
 export const render = renderWith(
   {
