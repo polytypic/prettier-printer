@@ -1,5 +1,5 @@
-import { isArray, isFunction, isNumber, isString, arityN, curry, freeze, pipe2U, identicalU } from 'infestines';
-import { accept, choose, setAfter, lazy, cases, arrayIx, or, props, validate, arrayId, freeFn, args, tuple } from 'partial.lenses.validation';
+import { isArray, isFunction, isNumber, isString, arityN, curry, identicalU, freeze, pipe2U } from 'infestines';
+import { accept, lazy, cases, arrayIx, or, props, validate, arrayId, freeFn, args, tuple } from 'partial.lenses.validation';
 
 var length = function length(x) {
   return x.length;
@@ -31,7 +31,7 @@ var padding = function padding(n) {
   return isString(n) ? n : repeat(n, ' ');
 };
 
-var Delay = function Delay(thunk) {
+var Delay = function lazy$$1(thunk) {
   return { c: 0, v: thunk };
 };
 var Eager = function Eager(value) {
@@ -45,7 +45,7 @@ function force(x) {
   return x.v = th();
 }
 
-var Nest = function Nest(prefix, doc) {
+var Nest = function nest(prefix, doc) {
   return { c: 3, p: prefix, d: doc };
 };
 var Choice = function Choice(wide, narrow) {
@@ -194,16 +194,16 @@ var softBreak = /*#__PURE__*/Choice('', lineBreak);
 
 //
 
-var prepend = /*#__PURE__*/curry(function (lhs, rhs) {
+var prepend = /*#__PURE__*/curry(function prepend(lhs, rhs) {
   return [lhs, rhs];
 });
-var append = /*#__PURE__*/curry(function (rhs, lhs) {
+var append = /*#__PURE__*/curry(function append(rhs, lhs) {
   return [lhs, rhs];
 });
 
 //
 
-var intersperse = /*#__PURE__*/curry(function (sep, docs) {
+var intersperse = /*#__PURE__*/curry(function intersperse(sep, docs) {
   var result = [];
   var n = length(docs);
   if (n) result.push(docs[0]);
@@ -212,7 +212,7 @@ var intersperse = /*#__PURE__*/curry(function (sep, docs) {
   }return result;
 });
 
-var punctuate = /*#__PURE__*/curry(function (sep, docs) {
+var punctuate = /*#__PURE__*/curry(function punctuate(sep, docs) {
   var r = [];
   var n = length(docs);
   var nm1 = n - 1;
@@ -245,13 +245,13 @@ var parens = /*#__PURE__*/pair('(', ')');
 var spaces = /*#__PURE__*/sq$1(' ');
 var squotes = /*#__PURE__*/sq$1("'");
 
-var enclose = /*#__PURE__*/curry(function (pair, doc) {
+var enclose = /*#__PURE__*/curry(function enclose(pair, doc) {
   return [pair[0], doc, pair[1]];
 });
 
 //
 
-var choice = /*#__PURE__*/curry(function (wide, narrow) {
+var choice = /*#__PURE__*/curry(function choice(wide, narrow) {
   return Choice(flatten(wide), narrow);
 });
 
@@ -272,26 +272,28 @@ var column = function column(withColumn) {
 };
 
 var nesting = function nesting(withNesting) {
-  return With(function (_, prefix) {
+  return With(function nesting(_, prefix) {
     return withNesting(length(prefix));
   });
 };
 
 var align = function align(doc) {
-  return With(function (column, prefix) {
+  return With(function align(column, prefix) {
     return Nest(column - length(prefix), doc);
   });
 };
 
-var hang = /*#__PURE__*/pipe2U(Nest, align);
+var hang = /*#__PURE__*/curry(function hang(indent, doc) {
+  return align(Nest(indent, doc));
+});
 
-var indent = /*#__PURE__*/curry(function (prefix, doc) {
+var indent = /*#__PURE__*/curry(function indent(prefix, doc) {
   return hang(prefix, [padding(prefix), doc]);
 });
 
 //
 
-var renderWith = /*#__PURE__*/curry(function (actions, zero, maxCols, doc) {
+var renderWith = /*#__PURE__*/curry(function renderWith(actions, zero, maxCols, doc) {
   return output(actions, zero, Eager(layout(maxCols, 0, ['', doc, undefined])));
 });
 
@@ -304,13 +306,13 @@ var render = /*#__PURE__*/renderWith({
   }
 }, '');
 
-var doc = /*#__PURE__*/choose( /*#__PURE__*/setAfter( /*#__PURE__*/lazy(function (doc) {
+var doc = /*#__PURE__*/lazy(function (doc) {
   return cases([isString, test(/^([\n\r]|[^\n\r]*)$/)], [isArray, arrayIx(doc)], [or(props({ c: identical(0), v: isFunction }), props({ c: identical(1), v: accept }), props({
     c: identical(3),
     p: or(isString, isNumber),
     d: accept
   }), props({ c: identical(5), w: accept, n: accept }), props({ c: identical(6), f: isFunction }))]);
-})));
+});
 
 var C = process.env.NODE_ENV === 'production' ? function (x) {
   return x;

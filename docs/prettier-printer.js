@@ -34,7 +34,7 @@
     return I.isString(n) ? n : repeat(n, ' ');
   };
 
-  var Delay = function Delay(thunk) {
+  var Delay = function lazy(thunk) {
     return { c: 0, v: thunk };
   };
   var Eager = function Eager(value) {
@@ -48,7 +48,7 @@
     return x.v = th();
   }
 
-  var Nest = function Nest(prefix, doc) {
+  var Nest = function nest(prefix, doc) {
     return { c: 3, p: prefix, d: doc };
   };
   var Choice = function Choice(wide, narrow) {
@@ -197,16 +197,16 @@
 
   //
 
-  var prepend = /*#__PURE__*/I.curry(function (lhs, rhs) {
+  var prepend = /*#__PURE__*/I.curry(function prepend(lhs, rhs) {
     return [lhs, rhs];
   });
-  var append = /*#__PURE__*/I.curry(function (rhs, lhs) {
+  var append = /*#__PURE__*/I.curry(function append(rhs, lhs) {
     return [lhs, rhs];
   });
 
   //
 
-  var intersperse = /*#__PURE__*/I.curry(function (sep, docs) {
+  var intersperse = /*#__PURE__*/I.curry(function intersperse(sep, docs) {
     var result = [];
     var n = length(docs);
     if (n) result.push(docs[0]);
@@ -215,7 +215,7 @@
     }return result;
   });
 
-  var punctuate = /*#__PURE__*/I.curry(function (sep, docs) {
+  var punctuate = /*#__PURE__*/I.curry(function punctuate(sep, docs) {
     var r = [];
     var n = length(docs);
     var nm1 = n - 1;
@@ -248,13 +248,13 @@
   var spaces = /*#__PURE__*/sq$1(' ');
   var squotes = /*#__PURE__*/sq$1("'");
 
-  var enclose = /*#__PURE__*/I.curry(function (pair, doc) {
+  var enclose = /*#__PURE__*/I.curry(function enclose(pair, doc) {
     return [pair[0], doc, pair[1]];
   });
 
   //
 
-  var choice = /*#__PURE__*/I.curry(function (wide, narrow) {
+  var choice = /*#__PURE__*/I.curry(function choice(wide, narrow) {
     return Choice(flatten(wide), narrow);
   });
 
@@ -275,26 +275,28 @@
   };
 
   var nesting = function nesting(withNesting) {
-    return With(function (_, prefix) {
+    return With(function nesting(_, prefix) {
       return withNesting(length(prefix));
     });
   };
 
   var align = function align(doc) {
-    return With(function (column, prefix) {
+    return With(function align(column, prefix) {
       return Nest(column - length(prefix), doc);
     });
   };
 
-  var hang = /*#__PURE__*/I.pipe2U(Nest, align);
+  var hang = /*#__PURE__*/I.curry(function hang(indent, doc) {
+    return align(Nest(indent, doc));
+  });
 
-  var indent = /*#__PURE__*/I.curry(function (prefix, doc) {
+  var indent = /*#__PURE__*/I.curry(function indent(prefix, doc) {
     return hang(prefix, [padding(prefix), doc]);
   });
 
   //
 
-  var renderWith = /*#__PURE__*/I.curry(function (actions, zero, maxCols, doc) {
+  var renderWith = /*#__PURE__*/I.curry(function renderWith(actions, zero, maxCols, doc) {
     return output(actions, zero, Eager(layout(maxCols, 0, ['', doc, undefined])));
   });
 
@@ -307,13 +309,13 @@
     }
   }, '');
 
-  var doc = /*#__PURE__*/V.choose( /*#__PURE__*/V.setAfter( /*#__PURE__*/V.lazy(function (doc) {
+  var doc = /*#__PURE__*/V.lazy(function (doc) {
     return V.cases([I.isString, test(/^([\n\r]|[^\n\r]*)$/)], [I.isArray, V.arrayIx(doc)], [V.or(V.props({ c: identical(0), v: I.isFunction }), V.props({ c: identical(1), v: V.accept }), V.props({
       c: identical(3),
       p: V.or(I.isString, I.isNumber),
       d: V.accept
     }), V.props({ c: identical(5), w: V.accept, n: V.accept }), V.props({ c: identical(6), f: I.isFunction }))]);
-  })));
+  });
 
   var C = function (x, c) {
     var v = V.validate(c, x);
