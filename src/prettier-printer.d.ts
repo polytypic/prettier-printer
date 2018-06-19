@@ -4,7 +4,15 @@ declare module 'prettier-printer' {
 
   // Rendering documents
   function render(maxCols: number, doc: IDoc): string
-  // function renderWith()
+  function renderWith<State>(
+    actions: {
+      text: (state: State, span: string) => State,
+      line: (state: State) => State
+    },
+    state: State,
+    maxCols: number,
+    doc: IDoc
+  ): State
 
   // Document constants
   const line: IDoc
