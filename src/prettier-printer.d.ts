@@ -64,8 +64,8 @@ declare module 'prettier-printer' {
   function nest(indent: string | number): (doc: IDoc) => IDoc
 
   // Layout dependent documents
-  function column(f: (column: number) => IDoc): IDoc
-  function nesting(f: (nesting: number) => IDoc): IDoc
+  function column(withColumn: (column: number) => IDoc): IDoc
+  function nesting(withNesting: (nesting: number) => IDoc): IDoc
 
   // Aligned documents
   function align(doc: IDoc): IDoc
