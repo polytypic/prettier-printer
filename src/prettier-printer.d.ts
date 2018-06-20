@@ -75,4 +75,11 @@ declare module 'prettier-printer' {
 
   function indent(indent: string | number, doc: IDoc): IDoc
   function indent(indent: string | number): (doc: IDoc) => IDoc
+
+  // Pretty
+  function pretty(value: any): IDoc
+
+  type Style = {indent?: number; negative0?: boolean; sharing?: boolean}
+  function prettyWith(style: Style, value: any): IDoc
+  function prettyWith(style: Style): (value: any) => IDoc
 }

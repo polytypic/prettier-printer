@@ -101,3 +101,8 @@ export const nesting = C(PP.nesting, V.fn([V.fn([V.number], doc)], doc))
 export const align = C(PP.align, V.fn([doc], doc))
 export const hang = C(PP.hang, V.fn([V.or(V.string, V.number), doc], doc))
 export const indent = C(PP.indent, V.fn([V.or(V.string, V.number), doc], doc))
+
+// Pretty
+
+export {pretty} from './pretty'
+export {prettyWith} from './pretty'

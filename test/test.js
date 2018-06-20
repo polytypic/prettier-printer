@@ -147,3 +147,117 @@ describe('prettier-printer', () => {
 
   testEq('', () => PP.render(10, PP.group([])))
 })
+
+describe('pretty', () => {
+  testEq("[0, [], {}, {'foo bar': 'ab\\nba'}, null, undefined]", () =>
+    PP.render(
+      60,
+      PP.pretty([-0, [], {}, { 'foo bar': 'ab\nba' }, null, undefined])
+    )
+  )
+
+  testEq(
+    `[
+  -0,
+  {
+    foobar:
+      'ab\\nba'
+  },
+  null,
+  undefined
+]`,
+    () =>
+      PP.render(
+        18,
+        PP.prettyWith({ negative0: true }, [
+          -0,
+          { foobar: 'ab\nba' },
+          null,
+          undefined
+        ])
+      )
+  )
+
+  testEq(
+    `new Set(
+  [3, 1, 4]
+)`,
+    () => PP.render(12, PP.pretty(new Set([3, 1, 4, 1])))
+  )
+
+  testEq(
+    `new Map(
+   [
+      ['b', 3],
+      ['a', 1],
+      ['c', 4]
+   ]
+)`,
+    () =>
+      PP.render(
+        15,
+        PP.prettyWith({ indent: 3 }, new Map([['b', 3], ['a', 1], ['c', 4]]))
+      )
+  )
+
+  function Foo(bar, baz) {
+    this.bar = bar
+    this.baz = baz
+  }
+
+  Foo.static = 'property'
+
+  testEq(
+    `Foo {
+  bar: 101,
+  baz: [3, 1, 4, 1, 5]
+}`,
+    () => PP.render(22, PP.pretty(new Foo(101, [3, 1, 4, 1, 5])))
+  )
+
+  testEq(
+    `[Function: Foo] {
+  static: 'property'
+}`,
+    () => PP.render(20, PP.pretty(Foo))
+  )
+  testEq('[Function]', () => PP.render(20, PP.pretty(() => {})))
+
+  testEq(
+    `new Int8Array(
+  [3, 1, 4]
+)`,
+    () => PP.render(20, PP.pretty(Int8Array.from([3, 1, 4])))
+  )
+
+  testEq('Promise {}', () => PP.render(20, PP.pretty(Promise.resolve(42))))
+
+  testEq('{x: 1}', () =>
+    PP.render(20, PP.pretty(Object.assign(Object.create(null), { x: 1 })))
+  )
+
+  const shared = { x: 101 }
+  testEq('[{x: 101}, {x: 101}]', () =>
+    PP.render(0, PP.pretty([shared, shared]))
+  )
+  testEq('[#1 {x: 101}, #1]', () =>
+    PP.render(0, PP.prettyWith({ sharing: true }, [shared, shared]))
+  )
+
+  const cyclic = { x: 42 }
+  cyclic.rec = cyclic
+  testEq('[#1 {x: 42, rec: #1}, #1 {x: 42, rec: #1}]', () =>
+    PP.render(0, PP.pretty([cyclic, cyclic]))
+  )
+  testEq('[#1 {x: 42, rec: #1}, #1]', () =>
+    PP.render(0, PP.prettyWith({ sharing: true }, [cyclic, cyclic]))
+  )
+
+  const Bar = () => {}
+  testEq('[[Function: Bar], [Function: Bar]]', () =>
+    PP.render(0, PP.pretty([Bar, Bar]))
+  )
+  testEq('[#1 [Function: Bar], [Function: Bar] #1]', () =>
+    PP.render(0, PP.prettyWith({ sharing: true }, [Bar, Bar]))
+  )
+})
