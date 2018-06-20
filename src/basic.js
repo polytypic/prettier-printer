@@ -84,7 +84,10 @@ export const nest = I.curry(Nest)
 
 //
 
-export const column = withColumn => With(column => withColumn(column))
+export const column = withColumn =>
+  With(function column(column) {
+    return withColumn(column)
+  })
 
 export const nesting = withNesting =>
   With(function nesting(_, prefix) {
