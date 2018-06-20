@@ -12,6 +12,10 @@ maximum width.  Basic features:
 * [Contract checking in non-production builds](./src/prettier-printer.js)
 * [MIT license](./LICENSE.md)
 
+As an example, the evaluation output in this live
+[CodeSandbox](https://codesandbox.io/s/8zo3ko95p2) example is formatted using
+this library.
+
 [![npm version](https://badge.fury.io/js/prettier-printer.svg)](http://badge.fury.io/js/prettier-printer)
 [![Bower version](https://badge.fury.io/bo/prettier-printer.svg)](https://badge.fury.io/bo/prettier-printer)
 [![Build Status](https://travis-ci.org/polytypic/prettier-printer.svg?branch=master)](https://travis-ci.org/polytypic/prettier-printer)
