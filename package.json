@@ -5,6 +5,7 @@
   "module": "dist/prettier-printer.es.js",
   "main": "dist/prettier-printer.cjs.js",
   "typings": "src/prettier-printer.d.ts",
+  "sideEffects": false,
   "scripts": {
     "dist": "rollup -c && cp dist/prettier-printer.js docs/",
     "docs": "klipse-github-docs-generator",
