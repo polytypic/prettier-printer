@@ -1,10 +1,16 @@
 # <a id="prettier-printer"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#) Prettier Printer &middot; [![GitHub stars](https://img.shields.io/github/stars/polytypic/prettier-printer.svg?style=social)](https://github.com/polytypic/prettier-printer) [![npm](https://img.shields.io/npm/dm/prettier-printer.svg)](https://www.npmjs.com/package/prettier-printer)
 
 A pretty printing library for text documents that can be rendered to a desired
-maximum width.
+maximum width.  Basic features:
 
-Note that the [▶ links](https://polytypic.github.io/prettier-printer/index.html)
-take you to a live version of this page.
+* Interactive documentation (the [▶ links](https://polytypic.github.io/prettier-printer/index.html))
+* Functional API:
+  * [Referentially transparent functions](https://en.wikipedia.org/wiki/Referential_transparency)
+  * [Curried functions](http://fr.umio.us/favoring-curry/)
+* [Supports tree-shaking](https://webpack.js.org/guides/tree-shaking/)
+* [TypeScript typings](./src/prettier-printer.d.ts)
+* [Contract checking in non-production builds](./src/prettier-printer.js)
+* [MIT license](./LICENSE.md)
 
 [![npm version](https://badge.fury.io/js/prettier-printer.svg)](http://badge.fury.io/js/prettier-printer)
 [![Bower version](https://badge.fury.io/bo/prettier-printer.svg)](https://badge.fury.io/bo/prettier-printer)
