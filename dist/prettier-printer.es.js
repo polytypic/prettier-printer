@@ -1,4 +1,4 @@
-import { isArray, isFunction, isNumber, isString, arityN, curry, identicalU, freeze, pipe2U } from 'infestines';
+import { isArray, isFunction, isNumber, isString, arityN, curry, freeze, identicalU, pipe2U } from 'infestines';
 import { accept, lazy, cases, arrayIx, or, props, validate, arrayId, freeFn, args, tuple } from 'partial.lenses.validation';
 
 var length = function length(x) {
@@ -266,7 +266,7 @@ var nest = /*#__PURE__*/curry(Nest);
 //
 
 var column = function column(withColumn) {
-  return With(function (column) {
+  return With(function column(column) {
     return withColumn(column);
   });
 };

@@ -270,7 +270,7 @@ var nest = /*#__PURE__*/I.curry(Nest);
 //
 
 var column = function column(withColumn) {
-  return With(function (column) {
+  return With(function column(column) {
     return withColumn(column);
   });
 };
