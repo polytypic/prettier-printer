@@ -3,6 +3,9 @@
 A pretty printing library for text documents that can be rendered to a desired
 maximum width.
 
+Note that the [▶ links](https://polytypic.github.io/prettier-printer/index.html)
+take you to a live version of this page.
+
 [![npm version](https://badge.fury.io/js/prettier-printer.svg)](http://badge.fury.io/js/prettier-printer)
 [![Bower version](https://badge.fury.io/bo/prettier-printer.svg)](https://badge.fury.io/bo/prettier-printer)
 [![Build Status](https://travis-ci.org/polytypic/prettier-printer.svg?branch=master)](https://travis-ci.org/polytypic/prettier-printer)
