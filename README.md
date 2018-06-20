@@ -83,7 +83,10 @@ maximum.  See also [`PP.renderWith`](#PP-renderWith).
 For example:
 
 ```js
-PP.render(10, PP.indent('-- ', PP.group(PP.intersperse(PP.line, ['Hello,', 'world!']))))
+PP.render(
+  10,
+  PP.indent('-- ', PP.group(PP.intersperse(PP.line, ['Hello,', 'world!'])))
+)
 // -- Hello,
 // -- world!
 ```
@@ -148,7 +151,10 @@ PP.render(
     PP.softLine,
     R.split(
       /\s+/,
-      'Here is a paragraph of text that we will format to a desired width.')))
+      'Here is a paragraph of text that we will format to a desired width.'
+    )
+  )
+)
 // Here is a paragraph
 // of text that we will
 // format to a desired
@@ -368,13 +374,19 @@ PP.render(
   PP.nest(
     2,
     PP.group([
-      'A comment:', PP.line,
+      'A comment:',
+      PP.line,
       PP.line,
       PP.indent(
         '-- ',
         PP.intersperse(
           PP.softLine,
-          R.split(/\s+/, 'This is the comment that you are looking for.')))])))
+          R.split(/\s+/, 'This is the comment that you are looking for.')
+        )
+      )
+    ])
+  )
+)
 // A comment:
 // 
 //   -- This is the

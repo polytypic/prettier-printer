@@ -114,7 +114,10 @@ printer</a>.</p>
 document within the specified maximum.  A width of <code>0</code> means that there is no
 maximum.  See also <a href="#PP-renderWith"><code>PP.renderWith</code></a>.</p>
 <p>For example:</p>
-<pre><code class="hljs lang-js">PP.render(10, PP.indent(&#39;-- &#39;, PP.group(PP.intersperse(PP.line, [&#39;Hello,&#39;, &#39;world!&#39;]))))
+<pre><code class="hljs lang-js">PP.render(
+  10,
+  PP.indent(&#39;-- &#39;, PP.group(PP.intersperse(PP.line, [&#39;Hello,&#39;, &#39;world!&#39;])))
+)
 </code></pre>
 <h4><a id="PP-renderWith"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-renderWith">■</a> <a href="#PP-renderWith"><code>PP.renderWith({text: (state, string) =&gt; state, line: state =&gt; state}, state, maxCols, doc) ~&gt; state</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.renderWith</code> renders the document with the given actions <code>text</code> and <code>line</code>.
@@ -148,7 +151,10 @@ which case <code>PP.lineBreak</code> renders as empty.</p>
     PP.softLine,
     R.split(
       /\s+/,
-      &#39;Here is a paragraph of text that we will format to a desired width.&#39;)))
+      &#39;Here is a paragraph of text that we will format to a desired width.&#39;
+    )
+  )
+)
 </code></pre>
 <h4><a id="PP-softBreak"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#PP-softBreak">■</a> <a href="#PP-softBreak"><code>PP.softBreak ~&gt; doc</code></a> <small><sup>v1.0.0</sup></small></h4>
 <p><code>PP.softBreak</code> renders as empty if the output fits and otherwise as a new line.</p>
@@ -258,13 +264,19 @@ prefix or number of spaces starting from the current column.</p>
   PP.nest(
     2,
     PP.group([
-      &#39;A comment:&#39;, PP.line,
+      &#39;A comment:&#39;,
+      PP.line,
       PP.line,
       PP.indent(
         &#39;-- &#39;,
         PP.intersperse(
           PP.softLine,
-          R.split(/\s+/, &#39;This is the comment that you are looking for.&#39;)))])))
+          R.split(/\s+/, &#39;This is the comment that you are looking for.&#39;)
+        )
+      )
+    ])
+  )
+)
 </code></pre>
 <h2><a id="related-work"></a> <a href="#contents">≡</a> <a href="https://github.com/polytypic/prettier-printer/blob/master/README.md#related-work">■</a> Related Work</h2>
 <ul>
