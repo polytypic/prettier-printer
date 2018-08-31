@@ -32,12 +32,12 @@
   },
   "homepage": "https://github.com/polytypic/prettier-printer#readme",
   "dependencies": {
-    "infestines": "^0.4.9",
-    "partial.lenses.validation": "^1.0.4"
+    "infestines": "^0.4.10",
+    "partial.lenses.validation": ">=1.0.4 <=3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^9.0.0",
     "babel-plugin-annotate-pure-calls": "^0.3.0",
     "babel-plugin-check-es2015-constants": "^6.22.0",
     "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
@@ -61,18 +61,18 @@
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "codecov": "^3.0.4",
-    "concurrently": "^3.6.1",
-    "eslint": "^5.3.0",
-    "klipse-github-docs-generator": "^0.3.5",
+    "concurrently": "^4.0.1",
+    "eslint": "^5.4.0",
+    "klipse-github-docs-generator": "^0.3.6",
     "livereload": "^0.7.0",
     "mocha": "^5.2.0",
-    "nyc": "^12.0.2",
-    "rollup": "^0.63.5",
+    "nyc": "^13.0.1",
+    "rollup": "^0.65.0",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-uglify": "^4.0.0",
-    "uglify-js": "^3.4.6",
+    "rollup-plugin-uglify": "^5.0.2",
+    "uglify-js": "^3.4.9",
     "watch-run": "^1.2.5"
   }
 }
