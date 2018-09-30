@@ -15,15 +15,12 @@ function show(x) {
 const toExpr = thunk =>
   thunk
     .toString()
+    .replace(/^\(\) => /, '')
     .replace(/\s+/g, ' ')
-    .replace(/^\s*function\s*\(\s*\)\s*{\s*(return\s*)?/, '')
-    .replace(/\s*;?\s*}\s*$/, '')
-    .replace(/function\s*(\([a-zA-Z]*\))\s*/g, '$1 => ')
-    .replace(/{\s*return\s*([^{;]+)\s*;\s*}/g, '$1')
-    .replace(/{\s*return\s*([^{;]+)\s*;\s*}/g, '$1')
+    .replace(/;\s*}/g, ' }')
 
 const testEq = (expect, thunk) =>
-  it(`${toExpr(thunk)} => ${show(expect)}`, () => {
+  it(`${toExpr(thunk)} ~> ${show(expect)}`, () => {
     const actual = thunk()
     if (!I.acyclicEqualsU(actual, expect))
       throw new Error(`Expected: ${show(expect)}, actual: ${show(actual)}`)

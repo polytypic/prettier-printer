@@ -1,4 +1,4 @@
-import { isArray, isFunction, isNumber, isString, arityN, curry, freeze, identicalU, pipe2U } from 'infestines';
+import { isArray, isFunction, isNumber, isString, arityN, curry, identicalU, freeze, pipe2U } from 'infestines';
 import { accept, lazy, cases, arrayIx, or, props, validate, arrayId, freeFn, args, tuple } from 'partial.lenses.validation';
 
 var length = function length(x) {
