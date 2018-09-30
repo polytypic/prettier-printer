@@ -1,4 +1,4 @@
-# <a id="prettier-printer"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#) Prettier Printer &middot; [![GitHub stars](https://img.shields.io/github/stars/polytypic/prettier-printer.svg?style=social)](https://github.com/polytypic/prettier-printer) [![npm](https://img.shields.io/npm/dm/prettier-printer.svg)](https://www.npmjs.com/package/prettier-printer)
+# <a id="prettier-printer"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#) [Prettier Printer](#prettier-printer) &middot; [![GitHub stars](https://img.shields.io/github/stars/polytypic/prettier-printer.svg?style=social)](https://github.com/polytypic/prettier-printer) [![npm](https://img.shields.io/npm/dm/prettier-printer.svg)](https://www.npmjs.com/package/prettier-printer)
 
 A pretty printing library for text documents that can be rendered to a desired
 maximum width.  Basic features:
@@ -22,7 +22,7 @@ this library.
 [![Code Coverage](https://img.shields.io/codecov/c/github/polytypic/prettier-printer/master.svg)](https://codecov.io/github/polytypic/prettier-printer?branch=master)
 [![](https://david-dm.org/polytypic/prettier-printer.svg)](https://david-dm.org/polytypic/prettier-printer) [![](https://david-dm.org/polytypic/prettier-printer/dev-status.svg)](https://david-dm.org/polytypic/prettier-printer?type=dev)
 
-## <a id="contents"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#contents) Contents
+## <a id="contents"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#contents) [Contents](#contents)
 
 * [Tutorial](#tutorial)
 * [Reference](#reference)
@@ -68,14 +68,14 @@ this library.
     * [`PP.indent(string | number, doc) ~> doc`](#PP-indent) <small><sup>v1.0.0</sup></small>
 * [Related Work](#related-work)
 
-## <a id="tutorial"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#tutorial) Tutorial
+## <a id="tutorial"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#tutorial) [Tutorial](#tutorial)
 
 To be done.
 
 In the meanwhile, read Philip Wadler's paper [A prettier
 printer](https://homepages.inf.ed.ac.uk/wadler/papers/prettier/prettier.pdf).
 
-## <a id="reference"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#reference) Reference
+## <a id="reference"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#reference) [Reference](#reference)
 
 Typically one imports the library as:
 
@@ -408,7 +408,7 @@ PP.render(
 //   -- for.
 ```
 
-## <a id="related-work"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#related-work) Related Work
+## <a id="related-work"></a> [≡](#contents) [▶](https://polytypic.github.io/prettier-printer/index.html#related-work) [Related Work](#related-work)
 
 * Philip Wadler's paper [A prettier
   printer](https://homepages.inf.ed.ac.uk/wadler/papers/prettier/prettier.pdf)
